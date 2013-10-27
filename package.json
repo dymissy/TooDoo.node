@@ -11,15 +11,9 @@
     ],
     "repository"  : {
         "type": "git",
-        "url" : "git://github.com/TryGhost/Ghost.git"
+        "url": "git://github.com/dymissy/TooDoo.node.git"
     },
     "private"     : true,
-    "licenses"    : [
-        {
-            "type": "MIT",
-            "url" : "https://raw.github.com/TryGhost/Ghost/master/LICENSE"
-        }
-    ],
     "scripts"     : {
         "start": "node index"
     },
