@@ -1,0 +1,35 @@
+{
+    "name"        : "TooDoo",
+    "version"     : "0.0.1",
+    "description" : "TooDoo is a simple MVC To Do List Application.",
+    "author"      : "Simone D'Amico",
+    "homepage"    : "https://github.com/dymissy/TooDoo.node",
+    "keywords"    : [
+        "toodoo",
+        "todo",
+        "node"
+    ],
+    "repository"  : {
+        "type": "git",
+        "url" : "git://github.com/TryGhost/Ghost.git"
+    },
+    "private"     : true,
+    "licenses"    : [
+        {
+            "type": "MIT",
+            "url" : "https://raw.github.com/TryGhost/Ghost/master/LICENSE"
+        }
+    ],
+    "scripts"     : {
+        "start": "node index"
+    },
+    "engines"     : {
+        "node": ">=0.10.* <0.11.4"
+    },
+    "engineStrict": true,
+    "dependencies": {
+        "underscore": "1.5.1",
+        "sqlite3"   : "2.1.16",
+        "when"      : "2.2.1"
+    }
+}
