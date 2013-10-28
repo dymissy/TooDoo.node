@@ -12,7 +12,7 @@ var http = require("http"),
 
 function start(server) {
     http.createServer(function (request, response) {
-        var pathname = url.parse(request.url).pathname;
+        var pathname = url.parse(request.url).pathname.substring(1);
 
         router.route(pathname, response);
     }).listen(server.port);
