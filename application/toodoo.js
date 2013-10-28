@@ -8,6 +8,7 @@ var config = require('../config/config.js'),
     when = require('when'),
     fs = require('fs'),
     path = require('path'),
+    server = require('./server.js'),
     _ = require('underscore'),
 
     appRoot = path.resolve(__dirname, '../'),
@@ -33,7 +34,8 @@ TooDoo = function () {
 
 TooDoo.prototype.init = function () {
     var self = this;
-    console.log(self);
+
+    server.start(self.config.server);
 };
 
 module.exports = TooDoo;
