@@ -23,9 +23,19 @@ function route(request, response, pathname) {
     var queryParts = pathname.split('/'),
         model = queryParts.shift(),
         action = queryParts.shift(),
-        controller = model + '.js',
-        queryString = queryParts,
+        queryString = queryParts;
 
+
+    //check for / request
+    if (model === '') {
+        model = 'index';
+    }
+
+    if (action === '') {
+        action = 'index';
+    }
+
+    var controller = model + '.js',
         controllerPath = path.join(controllersPath, controller);
 
     fs.exists(controllerPath, function (controllerExists) {
