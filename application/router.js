@@ -42,7 +42,7 @@ function route(request, response, pathname) {
         if (controllerExists) {
             controller = require(controllerPath);
             if (typeof controller.action === 'function') {
-                controller.action();
+                controller.action(queryString);
             } else {
                 //404 action not found
                 console.log(action + ' does not exist');
