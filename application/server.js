@@ -14,7 +14,7 @@ function start(server) {
     http.createServer(function (request, response) {
         var pathname = url.parse(request.url).pathname.substring(1);
 
-        router.route(pathname, response);
+        router.route(request, response, pathname);
     }).listen(server.port);
 }
 exports.start = start;

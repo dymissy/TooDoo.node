@@ -4,6 +4,12 @@
 
 "use strict";
 
+var fs = require('fs'),
+    path = require('path'),
+
+    controllersPath = path.join(__dirname, 'controllers'),
+    modelsPath = path.join(__dirname, 'models');
+
 /**
  * Route the single request
  *
@@ -12,27 +18,34 @@
  * @param pathname
  * @param response
  */
-function route(pathname, response) {
+function route(request, response, pathname) {
 
-    var controller,
-        model,
-        action,
-        queryString,
-        queryParts;
+    var queryParts = pathname.split('/'),
+        model = queryParts.shift(),
+        action = queryParts.shift(),
+        controller = model + '.js',
+        queryString = queryParts,
 
-    queryParts = pathname.split('/');
-    controller = queryParts.shift();
-    action = queryParts.shift();
-    model = controller;
-    queryString = queryParts;
+        controllerPath = path.join(controllersPath, controller);
 
-    console.log(controller, action, model, queryString);
-    //load the controller
+    fs.exists(controllerPath, function (controllerExists) {
+        if (controllerExists) {
+            controller = require(controllerPath);
+            if (typeof controller.action === 'function') {
+                controller.action();
+            } else {
+                //404 action not found
+                console.log(action + ' does not exist');
+            }
+        } else {
+            //404 controller not found
+            console.log(controllerPath + ' does not exist');
+        }
 
-
-    response.writeHead(200, {"Content-Type": "text/plain"});
-    response.write("Request for " + pathname + " received.");
-    response.end();
+        response.writeHead(200, {"Content-Type": "text/plain"});
+        response.write("Request for " + pathname + " received.");
+        response.end();
+    });
 }
 
 exports.route = route;
